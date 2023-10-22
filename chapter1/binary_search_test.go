@@ -70,7 +70,7 @@ func binarySearch(input []int, item int) (int, error) {
 		if low+1 == high {
 			return 0, errors.New("NotFound")
 		}
-		mid := (high-low)/2 + low
+		mid := (high + low) / 2
 		if input[mid] <= item {
 			low = mid
 		} else {
