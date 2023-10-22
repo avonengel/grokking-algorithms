@@ -1,7 +1,6 @@
-package binsort
+package binsearch
 
 import (
-	"errors"
 	"testing"
 )
 
@@ -56,25 +55,33 @@ func TestNotInArray(t *testing.T) {
 		t.Fatalf("Error NotFound expected, got (%d, %s)", index, err)
 	}
 }
-func binarySearch(input []int, item int) (int, error) {
-	low := 0
-	high := len(input) - 1
-	for {
-		// TODO this will repeatedly check the same element, as only low OR high are updated each iteration
-		if input[low] == item {
-			return low, nil
-		} else if input[high] == item {
-			return high, nil
+
+func BenchmarkWithHighLowComparison(b *testing.B) {
+	b.StopTimer()
+	input := testInput(0, b.N)
+	b.StartTimer()
+	for i := 0; i < b.N; i++ {
+		result, err := binarySearch(input, i)
+		if err != nil {
+			b.Error(err)
 		}
-		// TODO this should go into for low < high or similar, but I can't make it work right now - too tired
-		if low+1 == high {
-			return 0, errors.New("NotFound")
+		if result != i {
+			b.Errorf("wanted %d, but got %d", i, result)
 		}
-		mid := (high + low) / 2
-		if input[mid] <= item {
-			low = mid
-		} else {
-			high = mid
+	}
+}
+
+func BenchmarkWithMidComparison(b *testing.B) {
+	b.StopTimer()
+	input := testInput(0, b.N)
+	b.StartTimer()
+	for i := 0; i < b.N; i++ {
+		result, err := binarySearch(input, i)
+		if err != nil {
+			b.Error(err)
+		}
+		if result != i {
+			b.Errorf("wanted %d, but got %d", i, result)
 		}
 	}
 }
