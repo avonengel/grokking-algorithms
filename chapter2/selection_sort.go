@@ -1,7 +1,6 @@
 package selection_sort
 
 import (
-	"math"
 	"slices"
 )
 
@@ -19,11 +18,12 @@ func selection_sort(slice []int) {
 }
 
 func findSmallest(source []int) (int, int) {
-	smallestIdx := -1
-	smallestValue := math.MaxInt
-	for idx, value := range source {
+	smallestIdx := 0
+	smallestValue := source[0]
+	for i := 1; i < len(source); i++ {
+		value := source[i]
 		if value < smallestValue {
-			smallestIdx = idx
+			smallestIdx = i
 			smallestValue = value
 		}
 	}
