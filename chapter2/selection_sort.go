@@ -4,7 +4,7 @@ import (
 	"slices"
 )
 
-func selection_sort(slice []int) {
+func selectionSort(slice []int) {
 	// create a second array to select into
 	selectFrom := make([]int, len(slice))
 	copy(selectFrom, slice)

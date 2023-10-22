@@ -10,7 +10,7 @@ func TestSelectionSort(t *testing.T) {
 	input := testInput()
 
 	// when
-	selection_sort(input)
+	selectionSort(input)
 
 	// then
 	wanted := testInput()
