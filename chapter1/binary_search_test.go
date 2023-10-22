@@ -60,11 +60,13 @@ func binarySearch(input []int, item int) (int, error) {
 	low := 0
 	high := len(input) - 1
 	for {
+		// TODO this will repeatedly check the same element, as only low OR high are updated each iteration
 		if input[low] == item {
 			return low, nil
 		} else if input[high] == item {
 			return high, nil
 		}
+		// TODO this should go into for low < high or similar, but I can't make it work right now - too tired
 		if low+1 == high {
 			return 0, errors.New("NotFound")
 		}
