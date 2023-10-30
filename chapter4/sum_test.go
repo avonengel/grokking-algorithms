@@ -10,6 +10,7 @@ func TestSumBaseCase(t *testing.T) {
 		input    []int
 		expected int
 	}{
+		{[]int{}, 0},
 		{[]int{1}, 1},
 		{[]int{0}, 0},
 		{[]int{42}, 42},
