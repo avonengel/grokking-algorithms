@@ -1,17 +1,25 @@
 package chapter4
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestSumBaseCase(t *testing.T) {
-	// given
-	input := []int{1}
-	expected := 1
-
-	// when
-	got := sum(input)
-
-	// then
-	if got != expected {
-		t.Fatalf("expected %d, got %d", expected, got)
+	tests := []struct {
+		input    []int
+		expected int
+	}{
+		{[]int{1}, 1},
+		{[]int{0}, 0},
+		{[]int{42}, 42},
+	}
+	for _, testInput := range tests {
+		t.Run(fmt.Sprintf("TestSumBaseCase: %d", testInput.expected), func(t *testing.T) {
+			got := sum(testInput.input)
+			if got != testInput.expected {
+				t.Fatalf("expected %d, got %d", testInput.expected, got)
+			}
+		})
 	}
 }
