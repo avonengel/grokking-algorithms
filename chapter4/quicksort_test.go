@@ -36,6 +36,7 @@ func TestQuicksort(t *testing.T) {
 func quicksort(data []int) {
 	if len(data) > 2 {
 		pivot := data[0]
+		// a real implementation would move things around in order to avoid creating new arrays/slices
 		less := make([]int, 0, len(data))
 		greater := make([]int, 0, len(data))
 		for idx, val := range data {
@@ -60,9 +61,7 @@ func quicksort(data []int) {
 		}
 	} else if len(data) == 2 {
 		if data[0] > data[1] {
-			swap := data[0]
-			data[0] = data[1]
-			data[1] = swap
+			data[0], data[1] = data[1], data[0]
 		}
 	}
 }
