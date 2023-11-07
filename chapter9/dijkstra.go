@@ -2,6 +2,7 @@ package chapter9
 
 import (
 	"errors"
+	"math"
 	"slices"
 )
 
@@ -94,12 +95,12 @@ func (g *Graph) buildResult(start string, end string, nodes map[string]*nodeInfo
 
 func nextNode(nodes map[string]*nodeInfo) string {
 	var cheapestNeighbor string
-	var weight int
+	weight := math.MaxInt
 	for name, info := range nodes {
 		if info.visited {
 			continue
 		}
-		if cheapestNeighbor == "" || info.weight < weight {
+		if info.weight < weight {
 			weight = info.weight
 			cheapestNeighbor = name
 		}
